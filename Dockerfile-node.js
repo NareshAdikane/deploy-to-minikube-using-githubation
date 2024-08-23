@@ -1,8 +1,10 @@
-FROM node:14
-WORKDIR /usr/src/app
-COPY package*.json ./
-RUN npm install
-RUN npm install express
-COPY . .
-EXPOSE 3000
-CMD [ "node", "server.js" ]
+export SHELL=/bin/bash
+eval $(minikube -p minikube docker-env)
+
+# Ensure you're in the correct directory
+cd /path/to/directory/with/Dockerfile
+
+docker build -f ./Dockerfile -t devopshint/node-app:latest .
+
+echo -n "verifying images:"
+docker images
